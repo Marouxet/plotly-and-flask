@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+    <title>Testing Home Page</title>
+    {% endif %}
+
+</head>
+<body>
+    <p>
+        Gráfico generado durante la carga del sitio usando plotly express
+    </p>
+    <div id = "chart1"></div>
+    
+    <p>
+        Gráfico generado durante la carga del sitio usando plotly graphs objects
+    </p>
+
+    <div id = "chart2"></div>
+
+    <p>
+        Gráfico pre-generado y guardado en formato JSON en la carpeta. Archivo "pre_drawn_plotly_chart.json"
+    </p>
+
+    <div id = "chart3"></div>
+
+        <!-- plotly CDN -->
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        var graphs1 = {{ graph1JSON | safe}};
+        Plotly.plot("chart1", graphs1,{});
+
+        var graphs2 = {{ graph2JSON | safe}};
+        Plotly.plot("chart2", graphs2,{});
+
+        var graphs3 = {{ graph3JSON | safe}};
+        Plotly.plot("chart3", graphs3,{});
+
+    </script>
+</body>
+</html>
